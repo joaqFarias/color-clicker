@@ -2,13 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PLANTILLA DE BOOTSTRAP CON JQUERY</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-
+    <title>The Codingdojo ColorClicker!</title>
+    <script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
     <script type="text/javascript">
         function random_color() {
             var rgb = ['a', 'b', 'c', 'd', 'e', 'f', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -21,15 +16,22 @@
         }
         $(document).ready(function () {
             $('#large_box').click(function () {
-                alert('you clicked the big box!');
+                //alert('you clicked the big box!');
                 //comenta esto cuando hayas averiguado para qué se utiliza event.stopPropagation 
+                $(this).css("background-color", `${random_color()}`);
+                $(this).children().css("background-color", `${random_color()}`);
             })
             $('.side_box').click(function (event) {
                 event.stopPropagation();
+                $(this).siblings().css("background-color", `${random_color()}`);
             })
             $('.middle_box').click(function (event) {
                 event.stopPropagation();
+                $(this).parent().css("background-color", `${random_color()}`);
             })
+            // se pasa la funcion random_color si fuera una variable porque retorna el hexadecimal
+            // y no es necesario guardar el color que devuelve, ya que el ejercicio no lo pide ni
+            // lo necesita para la resolucion.
         });
     </script>
     <style type="text/css">
@@ -59,24 +61,23 @@
             margin: 60px 20px;
         }
     </style>
-
 </head>
 
 <body>
 
-    <body>
-        <h1>¡El ColorClicker de Codingdojo! </h1>
-        <div id='large_box'>
-            <div class='side_box'></div>
-            <div class='middle_box'></div>
-            <div class='side_box'></div>
-        </div>
-        <h2>Rules</h2>
-        <h3>1. ¡Cliquear el cuadro grande debería cambiar los colores de fondo de los cuadros pequeños y grandes!</h3>
-        <h3>2. ¡Cliquear el cuadro pequeño del medio debería cambiar el color del cuadro grande!</h3>
-        <h3>3. Cliquear el cuadro pequeño de la izquierda o la derecha debería cambiar el color de los siblings de ese
-            cuadro</h3>
-    </body>
+
+    <h1>¡El ColorClicker de Codingdojo! </h1>
+    <div id='large_box'>
+        <div class='side_box'></div>
+        <div class='middle_box'></div>
+        <div class='side_box'></div>
+    </div>
+    <h2>Rules</h2>
+    <h3>1. ¡Cliquear el cuadro grande debería cambiar los colores de fondo de los cuadros pequeños y grandes!</h3>
+    <h3>2. ¡Cliquear el cuadro pequeño del medio debería cambiar el color del cuadro grande!</h3>
+    <h3>3. Cliquear el cuadro pequeño de la izquierda o la derecha debería cambiar el color de los siblings de ese
+        cuadro</h3>
+
 
     <!-- DESDE ACA SOLO SCRIPT -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
